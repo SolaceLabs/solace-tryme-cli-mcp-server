@@ -9,8 +9,8 @@ This is the **Solace TryMe CLI MCP Server**, a Proof of Concept that exposes Sol
 ## Commands
 
 ### Development
-- `npm start` - Start the MCP server (runs on stdio transport)
-- `npm test` - Run the main test suite
+- `yarn start` - Start the MCP server (runs on stdio transport)
+- `yarn test` - Run the main test suite
 - `node test/feed-list-test.js` - Test feed listing functionality
 - `node test/feed-generate-test.js` - Test feed generation functionality
 - `node test/messaging-tools-test.js` - Test messaging tools (send/receive/request/reply)
@@ -19,7 +19,7 @@ This is the **Solace TryMe CLI MCP Server**, a Proof of Concept that exposes Sol
 ### Manual Testing with MCP Inspector
 ```bash
 # Terminal 1: Start MCP server
-npm start
+yarn start
 
 # Terminal 2: Start MCP Inspector
 npx @modelcontextprotocol/inspector node src/index.js
@@ -118,7 +118,7 @@ async handleToolName(args) {
 ### Prerequisites for Testing
 - STM CLI must be installed and available in PATH
 - Node.js 18+ required
-- MCP Inspector for manual testing: `npm install -g @modelcontextprotocol/inspector`
+- MCP Inspector for manual testing: `yarn global add @modelcontextprotocol/inspector`
 
 ## Future Development Path
 

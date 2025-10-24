@@ -12,7 +12,7 @@ This proof of concept demonstrates how to integrate STM's event feed management 
 
 - Node.js 18+
 - [Solace Try-Me CLI (STM)](https://github.com/SolaceLabs/solace-tryme-cli) v0.0.83 or later installed and available in PATH
-- MCP Inspector for testing: `npm install -g @modelcontextprotocol/inspector`
+- MCP Inspector for testing: `yarn global add @modelcontextprotocol/inspector`
 
 ## Installation
 
@@ -25,7 +25,7 @@ cd solace-tryme-agent
 git submodule update --init --recursive
 
 # Install dependencies
-npm install
+yarn install
 
 # Verify STM is available
 stm --version
@@ -144,7 +144,7 @@ The MCP Inspector provides an interactive web interface to test our MCP server t
 1. **Start the MCP Server:**
 ```bash
 # In the project directory
-npm start
+yarn start
 ```
 The server will start and display: "Solace TryMe CLI MCP Server running on stdio"
 
@@ -297,7 +297,7 @@ node test/end-to-end-test.js
 - On macOS with Homebrew: `brew install stm`
 
 #### MCP Inspector Connection Issues
-- Ensure the MCP server is running (`npm start`)
+- Ensure the MCP server is running (`yarn start`)
 - Check that no other process is using the stdio transport
 - Try restarting both server and inspector
 
@@ -316,7 +316,7 @@ node test/end-to-end-test.js
 ### Automated Tests
 ```bash
 # Run all tests
-npm test
+yarn test
 
 # Run specific test suites
 node test/feed-list-test.js
