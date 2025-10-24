@@ -1,0 +1,17 @@
+{
+  "name": "solace-tryme-cli-mcp-server",
+  "version": "0.1.0",
+  "description": "Solace TryMe CLI MCP Server - Proof of Concept",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/test.js"
+  },
+  "keywords": ["solace", "mcp", "stm", "event-feeds", "asyncapi"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.1"
+  }
+}

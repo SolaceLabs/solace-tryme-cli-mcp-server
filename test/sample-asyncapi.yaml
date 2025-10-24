@@ -1,0 +1,79 @@
+asyncapi: 2.6.0
+info:
+  title: Sample Order Processing API
+  version: 1.0.0
+  description: A simple order processing system for testing STM feed generation
+
+servers:
+  production:
+    url: orders.example.com
+    protocol: solace
+    description: Production Solace broker
+
+channels:
+  order/created:
+    description: Channel for order creation events
+    publish:
+      operationId: publishOrderCreated
+      message:
+        $ref: '#/components/messages/OrderCreated'
+
+  order/updated:
+    description: Channel for order update events
+    publish:
+      operationId: publishOrderUpdated
+      message:
+        $ref: '#/components/messages/OrderUpdated'
+
+components:
+  messages:
+    OrderCreated:
+      name: OrderCreated
+      title: Order Created Event
+      summary: Event triggered when a new order is created
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          orderId:
+            type: string
+            description: Unique order identifier
+          customerId:
+            type: string
+            description: Customer identifier
+          amount:
+            type: number
+            description: Order total amount
+          timestamp:
+            type: string
+            format: date-time
+            description: Order creation timestamp
+        required:
+          - orderId
+          - customerId
+          - amount
+          - timestamp
+
+    OrderUpdated:
+      name: OrderUpdated
+      title: Order Updated Event
+      summary: Event triggered when an order is updated
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          orderId:
+            type: string
+            description: Unique order identifier
+          status:
+            type: string
+            enum: [pending, confirmed, shipped, delivered, cancelled]
+            description: Updated order status
+          timestamp:
+            type: string
+            format: date-time
+            description: Update timestamp
+        required:
+          - orderId
+          - status
+          - timestamp
