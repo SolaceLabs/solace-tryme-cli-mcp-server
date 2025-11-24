@@ -8,7 +8,7 @@
     "test": "node test/test.js"
   },
   "keywords": ["solace", "mcp", "stm", "event-feeds", "asyncapi"],
-  "author": "",
+  "author": "Solace",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
