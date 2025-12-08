@@ -21,8 +21,8 @@ This is the **Solace TryMe CLI MCP Server**, a Proof of Concept that exposes Sol
 # Terminal 1: Start MCP server
 yarn start
 
-# Terminal 2: Start MCP Inspector
-npx @modelcontextprotocol/inspector node src/index.js
+# Terminal 2: Start MCP Inspector (must be globally installed first)
+mcp-inspector node src/index.js
 ```
 
 ### STM CLI Testing (requires STM installed)

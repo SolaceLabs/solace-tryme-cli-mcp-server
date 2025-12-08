@@ -12,7 +12,12 @@ This proof of concept demonstrates how to integrate STM's event feed management 
 
 - Node.js 18+
 - [Solace Try-Me CLI (STM)](https://github.com/SolaceLabs/solace-tryme-cli) v0.0.83 or later installed and available in PATH
-- MCP Inspector for testing: `yarn global add @modelcontextprotocol/inspector`
+- MCP Inspector for testing: Install globally with exact version
+  ```bash
+  yarn global add @modelcontextprotocol/inspector@0.1.0
+  # Or using npm (if yarn not available)
+  npm install -g @modelcontextprotocol/inspector@0.1.0
+  ```
 
 ## Installation
 
@@ -25,13 +30,41 @@ cd solace-tryme-agent
 git submodule update --init --recursive
 
 # Install dependencies
-yarn install
+yarn install --frozen-lockfile
 
 # Verify STM is available
 stm --version
 ```
 
 **Note**: This project includes the STM CLI source code as a git submodule (at `solace-tryme-cli/`) for reference purposes. The submodule is pinned to v0.0.83.
+
+## Security Best Practices
+
+When working with this repository, follow these security guidelines:
+
+### Dependency Management
+- This project uses Yarn with a lockfile (`yarn.lock`) for reproducible builds
+- Always use `yarn install --frozen-lockfile` to install dependencies
+- Never modify `yarn.lock` manually
+- Check for vulnerabilities regularly: `yarn audit` or `npm audit`
+- Check for outdated packages: `yarn outdated`
+
+### Installation Safety
+- All dependencies use exact version pinning (no ^ or ~ ranges)
+- Lifecycle scripts are a potential security risk - audit dependencies before installing
+- Never use `npx` to run tools - install globally with exact versions instead
+
+### Adding New Dependencies
+- Always specify exact versions: `yarn add package@1.2.3`
+- Never use version ranges: ~~`yarn add package@^1.2.3`~~ ❌
+- After adding packages, commit both `package.json` and `yarn.lock`
+- Team members run `yarn install --frozen-lockfile` to get exact versions
+
+### For Contributors
+- Run `yarn audit` before submitting pull requests
+- Do not commit secrets, API keys, or credentials to version control
+- Keep dependencies up to date and address security advisories promptly
+- Review the [OWASP NPM Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
 
 ## Available Tools
 
@@ -150,8 +183,14 @@ The server will start and display: "Solace TryMe CLI MCP Server running on stdio
 
 2. **Start MCP Inspector in a new terminal:**
 ```bash
-npx @modelcontextprotocol/inspector node src/index.js
+# Start the globally installed MCP Inspector
+mcp-inspector node src/index.js
+
+# Or if not in PATH, use yarn to run the installed version
+yarn global run @modelcontextprotocol/inspector node src/index.js
 ```
+
+⚠️ **Security Note**: Never use `npx` to run tools as it downloads and executes code without version pinning. Always install tools globally with specific versions.
 
 3. **Open the Inspector:**
 The inspector will open in your browser (typically http://localhost:3000)
